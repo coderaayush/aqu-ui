@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-11 chat-block-overlay" *ngIf="!userInitiated">
+    <button class="btn reconnectUser-btn mx-auto" (click)="reconnectUser()"><i class="fa fa-lg fa-refresh"></i></button>
+  </div>
+  <div class="col-11 chat-block" *ngIf="userInitiated">
+    <div class="chat-block-header">
+      <p style="text-align: right; padding: 5px 10px 0 10px; margin:0;"><span>My user ID : {{userChatData.userData.userId}}</span></p>
+      <p style="text-align: right; padding: 5px 10px 0 10px;" *ngIf="chatInitiated"><span>Chat ID : {{userChatData.chatData.chatId}}</span></p>
+      <button class="btn btn-outline-info" *ngIf="chatInitiated" style="position: absolute; top: 20px;" (click)="disconnectUser()">Disconnect Chat <i class="fa fa-times"></i></button>
+      <p style="font-size: 13px;" *ngIf="userChatData.chatItem">
+          <span>Connected Users</span>
+          <span *ngFor="let item of userChatData.chatItem.connectedUsers;"
+            style="border: #16a2b8 solid thin; border-radius:20px; padding:5px 10px; margin: 0 10px;">user id : {{item}}</span>
+        </p>
+    </div>
+    <div class="chat-body">
+      <div class="trigger-buttons" *ngIf="!chatInitiated">
+        <button class="btn start-btn mx-auto" (click)="startChat()">Start Chat</button>
+      </div>
+      <div class="message-block"  *ngIf="userChatData.chatItem">
+          <p *ngFor="let item of userChatData.chatItem.messages; let i = index" class="{{userChatData.userData.userId == item.userId? 'chat-item-right': 'chat-item'}}">
+            <span class="chat-message">{{userChatData.userData.userId == item.userId ? 
+              item.message : getUserName(item.userId) + '(' + item.userId + ') - ' + item.message}}</span>
+          </p>
+      </div>
+    </div>
+    <div class="chat-footer">
+        <div class="text-area-block" *ngIf="chatInitiated">
+          <button class="btn btn-primary pull-right" (click)="pushMessageToChat()">Send</button>
+          <input type="text" class="user-textarea" [(ngModel)]="draftChatMessage">
+          <button (click)="refreshItems()" *ngIf="chatInitiated && userInitiated"><i class="fa fa-refresh fa-lg"></i></button>
+        </div>
+    </div> 
+  </div>
+</div>

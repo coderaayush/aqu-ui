@@ -1,0 +1,36 @@
+<div class="row" style="height: 100vh; background-color: #d2e9f7;">
+    <div class="col-12 activeUser-block">
+        <div><i class="fa fa-user-o user-icon"></i></div>
+        <div *ngIf="userProfile">
+            <button class="btn btn-warning pull-right btn-sm" (click)="updateUser()">Update</button>
+            <input type="text" placeholder="Name" class="username-text" [(ngModel)] = "userProfile.userName">
+        </div>
+    </div>
+    <div class="col-12 usersList-block">
+        <div class="row">
+            <div class="col-12">
+                <p style="width: 100%;"><span class="side-item-header">Online Users</span></p>
+            </div>
+        </div>
+        <div class="row" *ngIf="usersData">
+            <div class="col-12" *ngFor="let user of usersData; let i = index">
+                <button class="btn btn-sm btn-info pull-right addchat-btn" (click)="addUserToChat(user.userId)">Add to chat</button>
+                <p *ngIf="user.userId" class="userlist-item"><span>{{user.userName}} | User ID : {{user.userId}}</span></p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <p style="width: 100%;"><span class="side-item-header">My Chats</span></p>
+            </div>
+        </div>
+        <div class="row" *ngIf="connectedChats">
+            <div class="col-12" *ngFor="let chatItem of connectedChats; let i = index">
+                <button class="btn btn-sm btn-info pull-right addchat-btn" [routerLink]="['/']" [queryParams]="{ chatId: chatItem.chatId }"> Switch <i class="fa fa-external-link"></i></button>
+                <p *ngIf="chatItem.chatId" class="userlist-item"><span>Chat ID : {{chatItem.chatId}}</span></p>
+            </div>
+        </div>
+    </div>
+</div>

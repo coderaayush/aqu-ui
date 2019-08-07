@@ -1,0 +1,58 @@
+.user-icon {
+    font-size: 70px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: #1b83b9 dashed 2px;
+    color: #1b83b9;
+    border-radius: 30px;
+    display: table;
+}
+
+.activeUser-block {
+    padding: 25px;
+    border-bottom: #ffffff solid 1px;
+    height: 28vh;
+}
+
+.username-text {
+    overflow: visible;
+    background: aliceblue;
+    box-shadow: none;
+    border: none;
+    padding: 3px 12px;
+}
+
+.usersList-block {
+    height: 69vh;
+    margin-top: 20px;
+}
+
+.usersList-block .row {
+    padding: 0 20px;
+    padding-bottom: 10px;
+    border-bottom: #1b83b9 solid thin;
+}
+
+.userlist-item {
+    margin: 0;
+    padding-top: 10px;
+    text-transform: capitalize;
+}
+
+.addchat-btn {
+    position: relative;
+    top: 7px;
+}
+
+.side-item-header {
+    padding: 5px 20px;
+    border: #1b83b9 solid 2px;
+    border-bottom: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    position: absolute;
+    top: -10px;
+    background-color: #1b83b9;
+    color: #fff;
+}

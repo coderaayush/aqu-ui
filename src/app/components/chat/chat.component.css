@@ -1,0 +1,68 @@
+.chat-block {
+    margin: 0 25px;
+    border: #ccc dashed 2px;
+    border-radius: 15px;
+    height: 70vh;
+}
+
+.chat-block-overlay {
+    position: absolute;
+    z-index: 10;
+    margin: 0 25px;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.3);
+    height: 70vh;
+}
+
+.start-btn {
+    background-color: #028ee2;
+    color: #fff;
+    font-size: 35px;
+    padding: 15px 30px;
+    border-radius: 25px;
+    box-shadow: none;
+    cursor: pointer;
+    display:block;
+    margin-top: 175px;
+}
+
+.reconnectUser-btn {
+    color: #fff;
+    font-size: 35px;
+    padding: 15px 30px;
+    border-radius: 25px;
+    box-shadow: none;
+    cursor: pointer;
+    display:block;
+    margin-top: 200px;
+}
+
+.chat-body {
+    height: 46vh;
+    overflow-y: scroll;
+    background: #f1f1f1;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+*:focus {
+    outline: none;
+}
+
+.user-textarea {
+    width: 85%;
+    padding: 5px;
+    border-radius: 15px;
+    border: #ccc solid thin;
+}
+
+.chat-message {
+    padding: 5px 10px;
+    border: #555 solid thin;
+    border-radius: 50px;
+    color: #21516e;
+}
+
+.chat-item-right {
+    text-align: right;
+}
