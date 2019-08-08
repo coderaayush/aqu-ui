@@ -40,3 +40,4 @@ Thumbs.db
 #distribution files
 
 dist/*
+node_modules/*
