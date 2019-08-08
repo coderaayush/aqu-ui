@@ -34,8 +34,6 @@ export class SidebarComponent implements OnInit {
       this.chatService.getOnlineUsers()
         .subscribe(result => {
           let usersData:any = Object.assign({}, result);
-          
-          console.log(result);
           this.usersData = usersData.data;
           this.userProfile = JSON.parse(JSON.stringify(usersData.data)).find(x => x.userId == localUserId);
 
@@ -67,8 +65,6 @@ export class SidebarComponent implements OnInit {
     this.socket.fromEvent("online-user-created").subscribe(result => {
       let localUserId = localStorage.getItem('userId');
       let usersData:any = Object.assign({}, result);
-      console.log('user created');
-      console.log(usersData);
       this.userProfile = usersData.data;
       this.usersData = usersData.onlineUsers;
     });
@@ -76,26 +72,20 @@ export class SidebarComponent implements OnInit {
     this.socket.fromEvent("online-user-updated").subscribe(result => {
       let localUserId = localStorage.getItem('userId');
       let usersData:any = Object.assign({}, result);
-      console.log('user updated');
-      console.log(usersData);
       this.usersData = usersData.data;
       this.userProfile = JSON.parse(JSON.stringify(usersData.data)).find(x => x.userId == localUserId);
     });
 
     this.socket.fromEvent("user-connected-chat-updated").subscribe(result => {
       let localUserId = localStorage.getItem('userId');
-      console.log('user-connected-chat-updated');
       let chatData:any = Object.assign({}, result);
-      console.log(chatData);
       if (localUserId == chatData.userId)
         this.connectedChats = chatData.connectedChats;
     });
 
     this.socket.fromEvent("user-chat-disconnected").subscribe(result => {
       let localUserId = localStorage.getItem('userId');
-      console.log('user-chat-disconnected');
       let chatData:any = Object.assign({}, result);
-      console.log(chatData);
       if (localUserId == chatData.userId)
         this.connectedChats = chatData.connectedChats;
     });
@@ -106,12 +96,10 @@ export class SidebarComponent implements OnInit {
     let data:any = {}
     data.chatId =  this.route.snapshot.queryParamMap.get('chatId') ? this.route.snapshot.queryParamMap.get('chatId') : localStorage.getItem('chatId');
     data.userId = userId;
-    console.log(data.chatId);
     this.chatService.addUserToChat(data).subscribe(result => {
         let itemData:any = Object.assign({}, result);
-        console.log(itemData);
         if (itemData.err == 0) {
-          this.toastr.success('User added to chat');
+          this.toastr.success( 'User added to chat');
         } else if (itemData.err == 111) {
           this.toastr.error('User already connected to this chat');
         }
@@ -127,7 +115,6 @@ export class SidebarComponent implements OnInit {
     let data:any = {};
     data.userId = localStorage.getItem('userId');
     data.userName = this.userProfile.userName;
-    console.log(data);
     this.chatService.updateUser(data).subscribe(result => {
       let itemData:any = Object.assign({}, result);
       console.log(itemData);

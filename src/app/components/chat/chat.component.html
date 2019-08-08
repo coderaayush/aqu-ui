@@ -28,7 +28,7 @@
         <div class="text-area-block" *ngIf="chatInitiated">
           <button class="btn btn-primary pull-right" (click)="pushMessageToChat()">Send</button>
           <input type="text" class="user-textarea" [(ngModel)]="draftChatMessage">
-          <button (click)="refreshItems()" *ngIf="chatInitiated && userInitiated"><i class="fa fa-refresh fa-lg"></i></button>
+          <button (click)="refreshItems()" *ngIf="chatInitiated && userInitiated" class="refresh-btn"><i class="fa fa-refresh fa-lg"></i></button>
         </div>
     </div> 
   </div>

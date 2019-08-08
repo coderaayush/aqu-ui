@@ -67,3 +67,8 @@
 .chat-item-right {
     text-align: right;
 }
+
+.refresh-btn {
+    margin-left: 20px;
+    border-radius: 5px;
+}

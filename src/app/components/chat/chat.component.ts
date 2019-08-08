@@ -76,7 +76,6 @@ export class ChatComponent implements OnInit {
       .subscribe(result => {
         let usersData:any = Object.assign({}, result);
         this.onlineUsers = usersData.data;
-        console.log(this.onlineUsers)
       },
       error => {
         console.log('something went wrong while creating chat');
@@ -86,8 +85,6 @@ export class ChatComponent implements OnInit {
 
     this.socket.fromEvent("online-user-updated").subscribe(result => {
       let usersData:any = Object.assign({}, result);
-      console.log('user chat component updated');
-      console.log(usersData);
       this.onlineUsers = usersData.data;
       console.log(this.onlineUsers);
       this.refreshItems();
@@ -95,9 +92,6 @@ export class ChatComponent implements OnInit {
 
     this.socket.fromEvent("chat-item-updated").subscribe(results => {
       let chatData:any = results;
-      console.log('***********',chatData.chatId);
-      console.log(this.userChatData.chatData.chatId);
-      console.log(results);
       if (chatData.chatId == this.userChatData.chatData.chatId) {
         console.log('refreshing items');
         this.refreshItems();
@@ -106,14 +100,12 @@ export class ChatComponent implements OnInit {
 
     this.socket.fromEvent("user-connected-chat-updated").subscribe(result => {
       let chatData:any = Object.assign({}, result);
-      console.log(chatData);
       this.chatInitiated = true;
       this.userChatData.chatItem = chatData.items;
     });
 
     this.socket.fromEvent("user-chat-disconnected").subscribe(result => {
       let chatData:any = Object.assign({}, result);
-      console.log(chatData);
       if (this.userChatData.chatData.chatId == chatData.items.chatId) {
         console.log('refreshing items');
         this.refreshItems();
@@ -182,8 +174,6 @@ export class ChatComponent implements OnInit {
         } 
         this.userChatData.chatItem = chatMessages.data;
         this.firstTimeUser = false;
-        console.log(result)
-        console.log(this.userChatData.chatItem)
       },
       error => {
         console.log('something went wrong while creating chat');
@@ -221,8 +211,6 @@ export class ChatComponent implements OnInit {
   }
 
   getUserName(userId) {
-    console.log(userId)
-    console.log(this.onlineUsers)
     if (this.onlineUsers) {
       console.log('userId : ', this.onlineUsers.find(x => x.userId == userId).userName);      
       return this.onlineUsers.find(x => x.userId == userId).userName;
